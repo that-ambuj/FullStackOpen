@@ -1,0 +1,40 @@
+title Exercise 0.6
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "", date: "2019-05-23" }, ...]
+
+note over browser:
+browser uses JSON data to create
+an unordered list of items in JSON file
+end note
+
+note over browser, server :
+user creates a new note and
+clicks on save button
+end note
+
+browser-->server: HTTP POST  https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: [...data.json, new_note_spa]
+
+note over browser:
+the post request pushes the new note to /new-note_spa
+which is then saved to data.json in main.js
+and rendered in the browser
+end note
+
+note over browser:
+also the page does not refresh(e.preventDefault) so there are less
+number of requests.
+end note
