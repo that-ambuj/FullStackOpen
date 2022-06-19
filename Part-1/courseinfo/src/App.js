@@ -31,7 +31,7 @@ const Content = (props) => {
 
 const Total = () => {
   return (
-    <><p>Nmber of exercises = {exercises1 + exercises2 + exercises3}</p></>
+    <><p>Number of exercises = {exercises1 + exercises2 + exercises3}</p></>
   )
 }
 
