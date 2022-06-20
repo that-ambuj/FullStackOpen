@@ -2,9 +2,16 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  margin-left : 40px
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  font-size: 1.1em ;
+  margin: 10px 20px;
+  padding: 5px 20px;
 }
