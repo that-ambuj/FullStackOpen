@@ -1,11 +1,11 @@
 const searchInObjArr = (objArr, term) => {
-    const searchRegex = new RegExp(term, "ig");
+    const searchRegex = new RegExp(term, "i");
     const newArr = [...objArr];
 
     const searchResults =
-        { term } !== ""
-            ? newArr.filter((target) => searchRegex.test(target.name.common))
-            : newArr;
+        { term } 
+            ? objArr.filter((target) => searchRegex.test(target.name.common))
+            : objArr;
 
     return searchResults;
 };
