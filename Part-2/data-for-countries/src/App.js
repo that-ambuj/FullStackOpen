@@ -71,9 +71,8 @@ const DisplayCountry = (props) => {
    )
 }
 
-const ShowCountry = (props) => {
+const ShowCountry = ({ arr }) => {
    const [showID, setShowID] = useState(0)
-   const arr = props.arr
 
    if (showID !== 0) {
       const country = arr.filter((country) => country.ccn3 === showID)[0]
@@ -113,8 +112,7 @@ const ShowCountry = (props) => {
    return null
 }
 
-const NotSpecific = (props) => {
-   const arr = props.arr
+const NotSpecific = ({arr}) => {
 
    if (arr.length > 10) {
       return <div> Please enter more letters.</div>
