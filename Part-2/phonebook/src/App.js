@@ -15,7 +15,7 @@ const App = () => {
 
    useEffect(() => {
       axios
-         .get("https://frozen-bayou-69534.herokuapp.com/api/persons")
+         .get("/api/persons")
          .then((response) => {
             console.log(response)
             setPersons(response.data)
