@@ -8,4 +8,4 @@ Link to this course : [Full Stack Open 2022](https://fullstackopen.com/en/)
 
 #### Links to my online deployed apps : 
 
-1. [Phonebook]((https://phonebook-backend-9898.herokuapp.com/)
+1. [Phonebook/ Contact Manager App](https://phonebook-backend-9898.herokuapp.com/)
