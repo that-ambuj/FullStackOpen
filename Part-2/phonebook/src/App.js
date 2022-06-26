@@ -6,18 +6,11 @@ import InputField from "./components/InputField"
 
 const Button = ({ text }) => <button type="submit">{text}</button>
 
-const DisplayContact = ({ name, number }) => (
-   <div>
-      {name}, {number}
-   </div>
-)
-
 const App = () => {
    const [persons, setPersons] = useState([])
    const [newName, setNewName] = useState("")
    const [newNumber, setNewNumber] = useState("")
    const [searchQuery, setSearchQuery] = useState("")
-   const [deleteId, setDeleteId] = useState("")
 
    useEffect(() => {
       axios.get("/api/persons").then((response) => {
