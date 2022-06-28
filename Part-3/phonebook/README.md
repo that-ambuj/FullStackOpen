@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+Please check [Part-2 repo of the same for older commits](https://github.com/ambujs89/FullStackOpen/tree/master/Part-2/phonebook)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
