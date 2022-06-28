@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react"
 import axios from "axios"
 import "./index.css"
@@ -199,9 +200,9 @@ const App = () => {
             message="This name & number already exist."
          />
          <ErrorMessage 
-         boolean={showValidationError} 
-         title="Invalid Phone Number"
-         message ="Please check the number & make sure it's in XX-XX... or XXX-XX.... format"
+            boolean={showValidationError} 
+            title="Invalid Phone Number"
+            message ="Please check the number & make sure it's in XX-XX... or XXX-XX.... format"
          />
 
          <WarningDialogue
