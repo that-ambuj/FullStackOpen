@@ -18,10 +18,10 @@
    "devDependencies": {
       "cors": "^2.8.5",
       "jest": "^28.1.1",
+      "lodash": "^4.17.21",
       "nodemon": "^2.0.18"
    },
    "jest": {
-      "testEnvironment" : "node"
+      "testEnvironment": "node"
    }
 }
-
