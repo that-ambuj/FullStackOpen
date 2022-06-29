@@ -1,87 +1,45 @@
-const lodash = require('lodash')
-
-const blogs = [
-   {
-      _id: "5a422a851b54a676234d17f7",
-      title: "React patterns",
-      author: "Michael Chan",
-      url: "https://reactpatterns.com/",
-      likes: 7,
-      __v: 0,
-   },
-   {
-      _id: "5a422aa71b54a676234d17f8",
-      title: "Go To Statement Considered Harmful",
-      author: "Edsger W. Dijkstra",
-      url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
-      likes: 5,
-      __v: 0,
-   },
-   {
-      _id: "5a422b3a1b54a676234d17f9",
-      title: "Canonical string reduction",
-      author: "Edsger W. Dijkstra",
-      url: "http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html",
-      likes: 12,
-      __v: 0,
-   },
-   {
-      _id: "5a422b891b54a676234d17fa",
-      title: "First class tests",
-      author: "Robert C. Martin",
-      url: "http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.htmll",
-      likes: 10,
-      __v: 0,
-   },
-   {
-      _id: "5a422ba71b54a676234d17fb",
-      title: "TDD harms architecture",
-      author: "Robert C. Martin",
-      url: "http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html",
-      likes: 0,
-      __v: 0,
-   },
-   {
-      _id: "5a422bc61b54a676234d17fc",
-      title: "Type wars",
-      author: "Robert C. Martin",
-      url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-      likes: 2,
-      __v: 0,
-   },
-]
-
-const listWithOneBlog = [
-   {
-      _id: "5a422aa71b54a676234d17f8",
-      title: "Go To Statement Considered Harmful",
-      author: "Edsger W. Dijkstra",
-      url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
-      likes: 5,
-      __v: 0,
-   },
-]
-
-const emptyList = []
+const lodash = require("lodash")
 
 const totalLikes = (arrayOfBlogs) => {
-   if(arrayOfBlogs.length === 0) {
+   if (arrayOfBlogs.length === 0) {
       return 0
    }
-   return arrayOfBlogs.map(obj => obj.likes).reduce((a,b) => a + b)
+   return arrayOfBlogs.map((obj) => obj.likes).reduce((a, b) => a + b)
 }
 
 const favouriteBlog = (arrayOfBlogs) => {
-   return arrayOfBlogs.sort((a,b) => {
-      return (a.likes - b.likes)
+   return arrayOfBlogs.sort((a, b) => {
+      return a.likes - b.likes
    })[arrayOfBlogs.length - 1]
 }
 
-// const authArray = lodash.pluck(blogs,'author')
-const max = lodash.last(Object.entries(lodash.countBy(blogs, "author")))
+const mostBlogs = (arrayOfBlogs) => {
+   const authEntries = Object.entries(lodash.countBy(arrayOfBlogs, "author"))
+   const max = lodash.last(authEntries.sort((a, b) => a[1] - b[1]))
 
-console.log()
+   const maxObj = {
+      author: max[0],
+      blogs: max[1],
+   }
+   return maxObj
+}
 
+const mostLikes = (arrayOfBlogs) => {
+   const mapped = blogs.map((obj) => {
+      return {
+         author: obj.author,
+         likes: obj.likes,
+      }
+   })
+   
+   const out = mapped.reduce((a, o) => {
+      return a[o.author] 
+         ? (a[o.author].likes += o.likes) 
+         : (a[o.author] = o), a
+   }, {})
+   
+   const maxLikesArr = Object.entries(out).map(each => each[1])
+   return lodash.last(maxLikesArr.sort((a,b) => (a.likes - b.likes)))
+}
 
-
-// module.exports = { totalLikes, favouriteBlog }
+module.exports = { totalLikes, favouriteBlog, mostBlogs, mostLikes }
