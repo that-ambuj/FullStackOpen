@@ -25,7 +25,7 @@ const mostBlogs = (arrayOfBlogs) => {
 }
 
 const mostLikes = (arrayOfBlogs) => {
-   const mapped = blogs.map((obj) => {
+   const mapped = arrayOfBlogs.map((obj) => {
       return {
          author: obj.author,
          likes: obj.likes,

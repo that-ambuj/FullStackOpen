@@ -92,7 +92,6 @@ describe("Favourite Blog", () => {
          likes: 12,
          __v: 0,
       })
-      console.log(result)
    })
 })
 
