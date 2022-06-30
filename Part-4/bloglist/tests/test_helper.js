@@ -51,6 +51,23 @@ const initialBlogs = [
    },
 ]
 
+const testBlogWithLikes = {
+   title: "might delete soon",
+   url: "nowhere",
+   author: "noOne",
+   likes: 69,
+}
+
+const testBlogWithoutLikes = {
+   title: "might probably delete soon",
+   url: "someWebSite",
+   author: "someOne",
+}
+
+const malformattedBlog = {
+   title : "something is wrong"
+}
+
 const nonExistingId = async () => {
    const blog = new Blog({
       title: "willremovethissoon",
@@ -68,6 +85,4 @@ const blogsInDb = async () => {
    return blogs.map((blog) => blog.toJSON())
 }
 
-
-
-module.exports = { initialBlogs, nonExistingId, blogsInDb }
+module.exports = { initialBlogs, nonExistingId, blogsInDb, testBlogWithLikes, testBlogWithoutLikes, malformattedBlog }
