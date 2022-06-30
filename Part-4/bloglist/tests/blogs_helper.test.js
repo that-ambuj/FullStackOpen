@@ -1,4 +1,4 @@
-const blogsHelper = require("../utils/blogs_helper")
+const blogsHelper = require("./blogs_helper")
 
 const blogs = [
    {
