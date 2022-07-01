@@ -83,9 +83,10 @@ describe("DELETEing a blog by ID", () => {
 
 describe("PUTting a blog by ID", () => {
    test("updated likes is same as PUT likes", async() => {
-      const result = await api.put("/api/blogs/5a422a851b54a676234d17f7").send({"likes" : 96})
+      likesTo = 24
+      const result = await api.put("/api/blogs/5a422a851b54a676234d17f7").send({"likes" : `${likesTo}`})
 
-      expect(result.body.likes).toEqual(96)
+      expect(result.body.likes).toEqual(likesTo)
    })
 })
 
