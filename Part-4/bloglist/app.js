@@ -6,6 +6,7 @@ const cors = require("cors")
 // import express async await error handler 
 require('express-async-errors')
 // import routers
+const loginRouter = require("./controllers/login")
 const blogsRouter = require("./controllers/blogs")
 const usersRouter = require("./controllers/users")
 // import middleware for logging, error handling and database
@@ -31,6 +32,7 @@ app.use(express.json())
 // use request logging middleware
 app.use(middleware.requestLogger)
 // setup routers
+app.use("/api/login", loginRouter)
 app.use("/api/users", usersRouter)
 app.use("/api/blogs", blogsRouter)
 // use custom error handling middleware
