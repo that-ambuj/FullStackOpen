@@ -1,5 +1,7 @@
 const blogsRouter = require("express").Router()
+const { random } = require("lodash")
 const Blog = require("../models/blog")
+const User = require("../models/user")
 
 blogsRouter.get("/", async (request, response) => {
    const blogs = await Blog.find({})
@@ -8,7 +10,15 @@ blogsRouter.get("/", async (request, response) => {
 })
 
 blogsRouter.post("/", async (request, response) => {
-   const blog = new Blog(request.body)
+   const users = await User.find({})
+   const randInt = Math.floor(Math.random() * users.length)
+
+   console.log(users[randInt]["_id"])
+   const randomUserId = users[randInt]["_id"]
+
+   console.log(randomUserId)
+
+   const blog = new Blog({...request.body, user : randomUserId})
 
    const savedBlog = await blog.save()
 

@@ -30,10 +30,8 @@ usersRouter.post("/", async (request, response) => {
    }
 
    const passwordIsValid = await passwordSchema.validate(password)
-
-   console.log(passwordIsValid)
-
-   if (passwordIsValid !== true) {
+   
+   if (!passwordIsValid) {
       return response
          .status(406)
          .json({
