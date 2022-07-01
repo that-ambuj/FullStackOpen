@@ -4,7 +4,7 @@ const requestLogger = (request, response, next) => {
    logger.info("Method:", request.method)
    logger.info("Path:  ", request.path)
 
-   if (!(request.path === "/api/users")) {
+   if (!(request.path === "/api/users" && request.method === "POST")) {
       logger.info("Body:  ", request.body)
    }
    logger.info("---")
