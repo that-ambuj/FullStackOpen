@@ -28,6 +28,7 @@ usersRouter.post("/", async (request, response) => {
          error: "username must be unique",
       })
    }
+   
 
    const passwordIsValid = await passwordSchema.validate(password)
    
