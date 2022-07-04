@@ -3,13 +3,13 @@ const Blog = require("../models/blog")
 const User = require("../models/user")
 const userExtractor = require("../utils/userExtractor")
 
-blogsRouter.get("/", async (_, response) => {
+blogsRouter.get("/", async (request, response) => {
    const blogs = await Blog.find({}).populate("user")
 
    return response.json(blogs).end()
 })
 
-blogsRouter.get("/:id", async (_, response) => {
+blogsRouter.get("/:id", async (request, response) => {
    const blog = await Blog.findById(request.params.id)
 
    if (blog) {
