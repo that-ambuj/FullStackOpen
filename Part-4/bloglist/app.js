@@ -31,12 +31,11 @@ app.use(cors())
 // use express json parser
 app.use(express.json())
 // use request logging middleware
-app.use("/api/login", loginRouter)
-app.use("/api/users", usersRouter)
 app.use(middleware.requestLogger)
-app.use(middleware.userExtractor)
 // setup routers
 app.use("/api/blogs", blogsRouter)
+app.use("/api/login", loginRouter)
+app.use("/api/users", usersRouter)
 // use custom error handling middleware
 app.use(middleware.errorHandler)
 app.use(middleware.unknownEndpoint)
