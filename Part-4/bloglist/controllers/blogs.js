@@ -2,8 +2,6 @@ const blogsRouter = require("express").Router()
 const Blog = require("../models/blog")
 const User = require("../models/user")
 
-// ! requires jwt for get requests too
-
 blogsRouter.get("/", async (_, response) => {
    const blogs = await Blog.find({}).populate("user")
 
