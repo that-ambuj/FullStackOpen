@@ -150,7 +150,9 @@ const App = () => {
       setNewNumber("")
    }
 
-   const overwritePerson = () => {
+   const overwritePerson = (event) => {
+      event.preventDefault()
+
       const newPerson = {
          name: newName,
          number: newNumber,
