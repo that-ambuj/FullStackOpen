@@ -1,9 +1,19 @@
 import React from 'react'
 
-const BlogItem = ({blog}) => (
+const style = {
+    author: {
+        fontWeight: 300,
+    },
+    title: {
+        fontWeight: 500,
+    },
+}
+
+const BlogItem = ({ blog }) => (
     <div>
-      {blog.title} {blog.author}
-    </div>  
-  )
-  
-  export default BlogItem
+        <div style={style.title}>{blog.title}</div>
+        <div style={style.author}>{blog.author}</div>
+    </div>
+)
+
+export default BlogItem

@@ -8,9 +8,9 @@ export const ErrorDialog = ({ message }) => {
         <div
             style={{
                 color : 'white',
-                fontWeight : 'bold',
+                fontWeight : '500',
                 padding: '10px 20px',
-                width: '200px',
+                width: '400px',
                 borderRadius: '8px',
                 textAlign : 'center',
                 margin : '10px',
@@ -53,7 +53,7 @@ const App = () => {
             )
             setUser(user)
         } catch (error) {
-            setErrorMessage('Wrong Credentials')
+            setErrorMessage('Wrong Username or Password')
             setTimeout(() => {
                 setErrorMessage(null)
             }, 5000)
@@ -79,7 +79,7 @@ const App = () => {
     }
 
     return (
-        <div style={{ fontFamily : 'system-ui, sans-serif'}}>
+        <div style={{ fontFamily : 'system-ui'}}>
             <h1>Login to the App</h1>
             {errorMessage && <ErrorDialog message={errorMessage} />}
             <form onSubmit={loginUser}>
