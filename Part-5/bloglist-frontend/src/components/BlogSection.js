@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import blogService from '../services/blogs'
-import BlogItem from './BlogItem'
+import BlogItem from './BlogItem/index'
 
 export const BlogNotif = ({ notif }) => {
     if (notif) {
@@ -60,7 +60,7 @@ const BlogSection = () => {
     return (
         <div>
             {notif && <BlogNotif notif={notif} />}
-            <h1>Create New Blog</h1>
+            <h2>Create New Blog</h2>
             <form onSubmit={submitBlog}>
                 <div>
                     Title :{' '}

@@ -1,0 +1,18 @@
+.box {
+    border : 1px solid #ddd;
+    padding : 10px 20px;
+    margin : 20px 0;
+    width : 800px;
+    border-radius : 10px;
+}
+
+.title {
+    font-size : 2.369rem;
+    margin-bottom : 10px
+}
+
+.box:hover {
+    box-shadow : 5px 5px 10px #ccc;
+    transform : translate(-2.5px, -2.5px);
+    transition : 0.2s;
+}

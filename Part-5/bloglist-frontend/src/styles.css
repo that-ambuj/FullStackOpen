@@ -4,4 +4,12 @@
 
 h1 {
     font-weight : 500;
+    font-size : 4.209rem;
+    margin : 10px 0;
+}
+
+h2 {
+    font-weight : 500;
+    font-size : 3.157rem;
+    margin : 7px 0;
 }
