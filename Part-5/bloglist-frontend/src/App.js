@@ -60,11 +60,19 @@ const App = () => {
         }
     }
 
+    const logout = () => { 
+        if(window.localStorage.getItem("appUser")){
+            window.localStorage.clear()
+            setUser(null)
+        }
+     }
+
     if (user) {
         return (
             <>
                 <h1>Blogs</h1>
                 <div>{user.name} is logged in.</div>
+                <button onClick={logout} >Log Out</button>
                 <BlogSection />
             </>
         )
