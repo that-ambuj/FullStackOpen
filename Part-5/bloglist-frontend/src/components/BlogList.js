@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import blogService from '../services/blogs'
+import BlogItem from './BlogItem'
 
 const BlogList = () => {
     const [blogs, setBlogs] = useState([])
 
     useEffect(() => {
-        blogService.getAll().then(blogs => setBlogs(blogs))
+        (async () => {
+            const response = await blogService.getAll()
+            return setBlogs(response)
+        })()
     }, [])
 
-    blogs.map(blog => { return (
-        <>
-            <div>{blog.title}</div>
-            <div>{blog.author}</div>
-        </>
-    )})
+    return blogs.map(blog => <BlogItem key={blog.id} blog={blog} />)
 }
 
 export default BlogList
