@@ -29,7 +29,7 @@ const BlogSection = () => {
     const blogFormRef = useRef()
 
     useEffect(() => {
-        ;(async () => {
+        (async () => {
             {
                 const blogs = await blogService.getAll()
                 await setBlogs(blogs)
