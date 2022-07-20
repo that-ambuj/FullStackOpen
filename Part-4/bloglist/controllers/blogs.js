@@ -35,14 +35,12 @@ blogsRouter.post("/", userExtractor, async (request, response) => {
 })
 
 blogsRouter.delete("/:id", userExtractor, async (request, response) => {
-   const blog = await Blog.findById(request.params.id)
+   const id = String(request.params.id)
+   const blog = await Blog.findById(id)
    const authedUser = await request.user
 
-   if (!authedUser._id) {
-      return response.status(401).json({ error: "token missing or invalid" })
-   }
    const userId = await authedUser.id
-
+   
    if (blog.user.toString() === userId.toString()) {
       await User.updateOne(
          { _id: userId },
@@ -52,7 +50,7 @@ blogsRouter.delete("/:id", userExtractor, async (request, response) => {
             },
          }
       )
-      await Blog.findOneAndDelete(blog)
+      await Blog.deleteOne({ _id : id})
 
       return response.status(204).end()
    }
