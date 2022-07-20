@@ -6,7 +6,7 @@ import './styles.css'
 
 const Info = ({ blog, likes, likeHandler }) => {
     const user = useContext(UserContext)
-    const {blogs, setBlogs} = useContext(BlogListContext)
+    const { blogs, setBlogs } = useContext(BlogListContext)
 
     const deleteVisibility = {
         display: user.username === blog.user.username ? '' : 'none',
@@ -15,9 +15,15 @@ const Info = ({ blog, likes, likeHandler }) => {
     console.log(blogs)
 
     const deleteBlog = () => {
-        blogService.deleteBlog(blog)
-
-        setBlogs(blogs.filter(bl => bl.id !== blog.id))
+        if (
+            window.confirm(
+                `Do you want to delete ${blog.title} by ${blog.author}?`
+            )
+        ) {
+            blogService.deleteBlog(blog)
+            setBlogs(blogs.filter(bl => bl.id !== blog.id))
+        }
+        
     }
 
     return (
