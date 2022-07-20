@@ -4,7 +4,7 @@ import './styles.css'
 const Info = ({ blog, likeHandler }) => {
     return (
         <>
-            <div>{blog.url}</div>
+            <div dangerouslySetInnerHTML={{__html : `<a href=${blog.url} target='_blank'> Link </a>`}}></div>
             <div>Likes : {blog.likes}</div>
             <button onSubmit={likeHandler}> Like </button>
         </>
