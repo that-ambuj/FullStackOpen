@@ -20,10 +20,10 @@ logger.info("connecting to mongodb")
 mongoose
    .connect(config.MONGODB_URI)
    .then(() => {
-      logger.info("connected to MongoDB")
+      console.log("connected to mongodb")
    })
    .catch((error) => {
-      logger.error("error connecting to MongoDB :", error.message)
+      console.log("error connecting to mongodb :", error.message)
    })
 
 // use cross origin resource sharing
