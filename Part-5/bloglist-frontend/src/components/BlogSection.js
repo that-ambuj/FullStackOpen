@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import blogService from '../services/blogs'
 import BlogForm from './BlogForm'
 import BlogItem from './BlogItem/index'
@@ -26,6 +26,7 @@ export const BlogNotif = ({ notif }) => {
 const BlogSection = () => {
     const [blogs, setBlogs] = useState([])
     const [notif, setNotif] = useState(null)
+    const blogFormRef = useRef()
 
     useEffect(() => {
         ;(async () => {
@@ -37,6 +38,7 @@ const BlogSection = () => {
     }, [])
 
     const submitBlog = blogObject => {
+        blogFormRef.current.toggleVisibility()
         blogService.createBlog(blogObject).then(returnedBlog => {
             setBlogs(blogs.concat(returnedBlog))
         })
@@ -50,7 +52,7 @@ const BlogSection = () => {
         <div>
             {notif && <BlogNotif notif={notif} />}
             <h2>Create New Blog</h2>
-            <Togglable buttonLabel='Create Blog'>
+            <Togglable buttonLabel='Create Blog' ref={blogFormRef}>
                 <BlogForm createBlog={submitBlog} />
             </Togglable>
             <div>
