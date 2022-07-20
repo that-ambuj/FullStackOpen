@@ -25,7 +25,6 @@ const createBlog = async newBlog => {
 
 const increaseLikes = async updatedBlog => {
     const response = await axios.put(`${baseUrl}/${updatedBlog.id}`, updatedBlog)
-    console.log(updatedBlog.id)
 
     return response.data
 }
