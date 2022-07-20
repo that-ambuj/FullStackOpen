@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import BlogSection from './components/BlogSection'
 import loginService from './services/login'
 import blogService from './services/blogs'
+import Togglable from './components/Togglable'
+import LoginForm from './components/LoginForm'
 
 export const ErrorDialog = ({ message }) => {
     return (
@@ -22,8 +24,6 @@ export const ErrorDialog = ({ message }) => {
 }
 
 const App = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
     const [errorMessage, setErrorMessage] = useState(null)
     
@@ -36,18 +36,10 @@ const App = () => {
         }
     }, [])
 
-    const loginUser = async event => {
-        event.preventDefault()
-
-        const userCreds = {
-            username: username,
-            password: password,
-        }
+    const loginUser = async ( userObject ) => {
 
         try {
-            const user = await loginService.login(userCreds)
-            setUsername('')
-            setPassword('')
+            const user = await loginService.login(userObject)
             window.localStorage.setItem(
                 "appUser", JSON.stringify(user)
             )
@@ -82,27 +74,9 @@ const App = () => {
         <div style={{ fontFamily : 'system-ui'}}>
             <h1>Login to the App</h1>
             {errorMessage && <ErrorDialog message={errorMessage} />}
-            <form onSubmit={loginUser}>
-                <div>
-                    Username :{' '}
-                    <input
-                        type='text'
-                        name='username'
-                        value={username}
-                        onChange={({ target }) => setUsername(target.value)}
-                    />
-                </div>
-                <div>
-                    Password :{' '}
-                    <input
-                        type='password'
-                        name='password'
-                        value={password}
-                        onChange={({ target }) => setPassword(target.value)}
-                    />
-                </div>
-                <button type='submit'>Submit</button>
-            </form>
+            <Togglable buttonLabel='Login' >
+                <LoginForm loginHandler={loginUser} />
+            </Togglable> 
         </div>
     )
 }
