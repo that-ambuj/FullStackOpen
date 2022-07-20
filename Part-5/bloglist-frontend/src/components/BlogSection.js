@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, createContext } from 'react'
 import blogService from '../services/blogs'
 import BlogForm from './BlogForm'
 import BlogItem from './BlogItem/index'
 import Togglable from './Togglable'
 
-export const BlogNotif = ({ notif }) => {
+export const BlogListContext = createContext(null)
+
+const BlogNotif = ({ notif }) => {
     if (notif) {
         return (
             <div
@@ -48,6 +50,7 @@ const BlogSection = () => {
         }, 5000)
     }
 
+
     return (
         <div>
             {notif && <BlogNotif notif={notif} />}
@@ -55,11 +58,11 @@ const BlogSection = () => {
             <Togglable buttonLabel='Create Blog' ref={blogFormRef}>
                 <BlogForm createBlog={submitBlog} />
             </Togglable>
-            <div>
-                {blogs.map(blog => (
+            <BlogListContext.Provider value={{ blogs, setBlogs }}>
+                {blogs.sort((a,b) => ((a.likes - b.likes) * -1 )).map(blog => (
                     <BlogItem key={blog.id} blog={blog} />
                 ))}
-            </div>
+            </BlogListContext.Provider>
         </div>
     )
 }

@@ -1,8 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../../App'
 import blogService from '../../services/blogs'
+import { BlogListContext } from '../BlogSection'
 import './styles.css'
 
 const Info = ({ blog, likes, likeHandler }) => {
+    const user = useContext(UserContext)
+    const {blogs, setBlogs} = useContext(BlogListContext)
+
+    const deleteVisibility = {
+        display: user.username === blog.user.username ? '' : 'none',
+    }
+
+    console.log(blogs)
+
+    const deleteBlog = () => {
+        blogService.deleteBlog(blog)
+
+        setBlogs(blogs.filter(bl => bl.id !== blog.id))
+    }
+
     return (
         <>
             <div
@@ -11,6 +28,9 @@ const Info = ({ blog, likes, likeHandler }) => {
                 }}></div>
             <div>Likes : {likes}</div>
             <button onClick={likeHandler}> Like </button>
+            <button style={deleteVisibility} onClick={deleteBlog}>
+                Delete
+            </button>
         </>
     )
 }
