@@ -40,6 +40,7 @@ const Info = ({ blog, likes, likeHandler }) => {
         </>
     )
 }
+
 const BlogItem = ({ blog }) => {
     const [visible, setVisible] = useState(false)
     const [likes, setLikes] = useState(blog.likes)
@@ -53,6 +54,7 @@ const BlogItem = ({ blog }) => {
     const toggleVisibility = () => {
         setVisible(!visible)
     }
+
     return (
         <div className='box'>
             <div className='title'>{blog.title}</div>
