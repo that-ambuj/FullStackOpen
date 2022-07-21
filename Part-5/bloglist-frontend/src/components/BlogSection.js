@@ -4,7 +4,7 @@ import BlogForm from './BlogForm'
 import BlogItem from './BlogItem/index'
 import Togglable from './Togglable'
 
-export const BlogListContext = createContext(null)
+export const BlogListContext = createContext()
 
 const BlogNotif = ({ notif }) => {
     if (notif) {
@@ -32,10 +32,8 @@ const BlogSection = () => {
 
     useEffect(() => {
         (async () => {
-            {
-                const blogs = await blogService.getAll()
-                await setBlogs(blogs)
-            }
+            const blogs = await blogService.getAll()
+            setBlogs(blogs)
         })()
     }, [])
 
@@ -50,7 +48,6 @@ const BlogSection = () => {
         }, 5000)
     }
 
-
     return (
         <div>
             {notif && <BlogNotif notif={notif} />}
@@ -59,9 +56,11 @@ const BlogSection = () => {
                 <BlogForm createBlog={submitBlog} />
             </Togglable>
             <BlogListContext.Provider value={{ blogs, setBlogs }}>
-                {blogs.sort((a,b) => ((a.likes - b.likes) * -1 )).map(blog => (
-                    <BlogItem key={blog.id} blog={blog} />
-                ))}
+                {blogs
+                    .sort((a, b) => (a.likes - b.likes) * -1)
+                    .map(blog => (
+                        <BlogItem key={blog.id} blog={blog} />
+                    ))}
             </BlogListContext.Provider>
         </div>
     )
