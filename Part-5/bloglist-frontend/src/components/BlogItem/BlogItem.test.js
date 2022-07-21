@@ -1,21 +1,44 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, renderHook, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import BlogItem from './BlogItem'
 
-describe('BlogItem Component', () => { 
-    test('should render a blog', () => { 
-        const blog = {
-            title : 'test blog',
-            author : 'nobody',
-            likes : '69',
-            url : 'https://does.not.exist/some-blog'
-        }
+describe('BlogItem Component', () => {
+    let container
 
-        render(<BlogItem blog={blog} />)
+    const blog = {
+        title: 'test blog',
+        author: 'nobody',
+        likes: '69',
+        url: 'https://does.not.exist/some-blog',
+    }
 
-        const title = screen.getByText('test blog')
+    beforeEach(() => {
+        container = render(<BlogItem blog={blog} />).container
+    });
 
-        expect(title).toBeDefined()
+    test('should render the title', () => { 
+        const title = container.querySelector('.title')
+        
+        expect(title).toHaveTextContent('test blog')
      })
- })
+
+     test('should render the author', () => {
+        const author = container.querySelector('.author')
+
+        expect(author).toHaveTextContent('nobody')
+     });
+
+     test('should not render the likes by default', () => {
+        const likes = screen.queryByText('Likes')
+
+        expect(likes).toBeNull()       
+     });
+     
+     test('should not render the url by default', () => {
+        const link = container.querySelector('a')
+        
+        expect(link).toBeNull()
+     });
+})
