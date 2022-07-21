@@ -10,6 +10,7 @@ require('express-async-errors')
 const blogsRouter = require("./controllers/blogs")
 const loginRouter = require("./controllers/login")
 const usersRouter = require("./controllers/users")
+const testingRouter = require("./controllers/testing")
 // import middleware for logging, error handling and database
 const middleware = require("./utils/middleware")
 const logger = require("./utils/logger")
@@ -37,6 +38,10 @@ app.use("/api/blogs", blogsRouter)
 app.use("/api/login", loginRouter)
 app.use("/api/users", usersRouter)
 // use custom error handling middleware
+if (process.env.NODE_ENV === 'test') {  
+   const testingRouter = require('./controllers/testing')  
+   app.use('/api/testing', testingRouter)
+}
 app.use(middleware.errorHandler)
 app.use(middleware.unknownEndpoint)
 
