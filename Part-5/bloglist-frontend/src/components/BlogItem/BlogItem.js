@@ -33,8 +33,8 @@ const Info = ({ blog, likes, likeHandler }) => {
                     __html: `<a href=${blog.url} target='_blank'> Link </a>`,
                 }}></div>
             <div>Likes : {likes}</div>
-            <button onClick={likeHandler}> Like </button>
-            <button style={deleteVisibility} onClick={deleteBlog}>
+            <button className='like-button' onClick={likeHandler}> Like </button>
+            <button className='delete-button' style={deleteVisibility} onClick={deleteBlog}>
                 Delete
             </button>
         </>

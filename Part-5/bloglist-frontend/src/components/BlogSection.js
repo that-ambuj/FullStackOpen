@@ -52,7 +52,7 @@ const BlogSection = () => {
         <div>
             {notif && <BlogNotif notif={notif} />}
             <h2>Create New Blog</h2>
-            <Togglable buttonLabel='Create Blog' ref={blogFormRef}>
+            <Togglable id='create-blog' buttonLabel='Create Blog' ref={blogFormRef}>
                 <BlogForm createBlog={submitBlog} />
             </Togglable>
             <BlogListContext.Provider value={{ blogs, setBlogs }}>

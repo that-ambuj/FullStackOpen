@@ -78,7 +78,7 @@ const App = () => {
         <div style={{ fontFamily: 'system-ui' }}>
             <h1>Login to the App</h1>
             {errorMessage && <ErrorDialog message={errorMessage} />}
-            <Togglable buttonLabel='Login'>
+            <Togglable buttonLabel='Login' id='show-login'>
                 <LoginForm loginHandler={loginUser} />
             </Togglable>
         </div>
