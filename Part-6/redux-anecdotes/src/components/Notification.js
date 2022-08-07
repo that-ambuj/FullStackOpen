@@ -1,14 +1,18 @@
+import { useSelector } from 'react-redux'
+
 const Notification = () => {
-  const style = {
-    border: 'solid',
-    padding: 10,
-    borderWidth: 1
-  }
-  return (
-    <div style={style}>
-      render here notification...
-    </div>
-  )
+    const notification = useSelector(({ notification }) => notification.value)
+
+    const style = {
+        border: '1px solid #AAA',
+        padding: 10,
+        borderRadius: 5,
+    }
+    return (
+        <div style={{ ...style, display: notification === '' ? 'none' : 'block' }}>
+            {notification}
+        </div>
+    )
 }
 
 export default Notification
