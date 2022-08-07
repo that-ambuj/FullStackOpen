@@ -11,7 +11,9 @@ const App = () => {
         const content = event.target.anec.value
         event.target.anec.value = ''
 
-        dispatch(createAnec(content))
+        if (content !== '') {
+            dispatch(createAnec(content))
+        }
     }
 
     return (
