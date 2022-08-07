@@ -29,6 +29,8 @@ const anecdoteReducer = (state = initialState, action) => {
             const toUpvote = state.find(anec => anec.id === id)
             const upvotedAnec = { ...toUpvote, votes: toUpvote.votes + 1 }
             return state.map(anec => (anec.id !== id ? anec : upvotedAnec))
+        case 'CREATE_NEW':
+            return [...state, action.data]
         default:
             return state
     }
@@ -38,6 +40,17 @@ export const upvoteAnec = id => {
     return {
         type: 'UPVOTE',
         data: { id },
+    }
+}
+
+export const createAnec = content => {
+    return {
+        type: 'CREATE_NEW',
+        data: {
+            content,
+            id: getId(),
+            votes: 0,
+        },
     }
 }
 
