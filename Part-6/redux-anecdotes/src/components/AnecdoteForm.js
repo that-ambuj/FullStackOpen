@@ -16,10 +16,7 @@ const AnecdoteForm = () => {
         if (content !== '') {
             const newAnec = await anecdotesService.createNew(content)
             dispatch(createAnec(newAnec))
-            dispatch(setNotification(`${content} was added`))
-            setTimeout(() => {
-                dispatch(setNotification(''))
-            }, 5000)
+            dispatch(setNotification(`${content} was added`, 5))
         }
     }
 

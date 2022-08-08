@@ -26,11 +26,11 @@ const AnecdotesList = () => {
                             onClick={() => {
                                 dispatch(upvoteAnec(anecdote.id))
                                 dispatch(
-                                    setNotification(`You voted for ${anecdote.content}`)
+                                    setNotification(
+                                        `You voted for ${anecdote.content}`,
+                                        5
+                                    )
                                 )
-                                setTimeout(() => {
-                                    dispatch(setNotification(''))
-                                }, 5000)
                             }}>
                             vote
                         </button>
